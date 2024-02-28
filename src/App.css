@@ -1,0 +1,13 @@
+.sidebar-section{
+    border: 2px solid black;
+}
+.topbar-section{
+    border: 2px solid black;
+}
+.addtoproduct-formsection{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top:10px;
+}
