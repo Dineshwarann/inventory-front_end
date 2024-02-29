@@ -1,13 +1,13 @@
+import { useNavigate } from "react-router-dom"
+
 export default function Sidebar(){
+    const navigate=useNavigate();
     return(
         <div className="sidebar-section">
-           {/* <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">Dashboard</button>
-           <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">Add Product</button>
-           <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">Chart</button> */}
            <ul className="menu bg-base-200 w-38 rounded-box">
-                <li><a>Dashboard</a></li>
-                <li><a>Add Product</a></li>
-                <li><a>Graph</a></li>
+                <li><a onClick={()=>navigate("/dashboard")}>Dashboard</a></li>
+                <li><a onClick={()=>navigate("/addtoproduct")}>Add Product</a></li>
+                <li><a onClick={()=>navigate("/billing")}>Billing</a></li>
                 </ul>
         </div>
     )

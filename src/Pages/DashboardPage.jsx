@@ -1,6 +1,29 @@
+import { useContext, useEffect } from "react";
 import Dashboard from "../Components/Dashboard";
+import { AppCtx } from "../Context/AppContext";
+import { deleteProduct } from "../Helpers/helper";
 
 export default function DashboardPage(){
+
+    const {data}=useContext(AppCtx);
+    const quantity=data.reduce((accumulator,value,index,array)=>{
+        return accumulator+=value.quantity;
+    },0)
+    const storeValue=data.reduce((accumulator,value,index,array)=>{
+        return accumulator+=value.price;
+    },0)
+    function deleteProductFromDb(id){
+        const data={
+            id
+        }
+        deleteProduct(data).then((result)=>{
+            if(result.message==="Delete Product Successfull"){
+               console.log("delete product sucessfull")
+            }else{
+                console.log("Error deleting data")
+            }
+    }).catch((error)=>{console.log("Error fetching deleting data")});
+    }
     return(
         <div className="dashboard-page">
             <Dashboard>
@@ -8,23 +31,18 @@ export default function DashboardPage(){
                 <div className="stats shadow">
                 <div className="stat place-items-center">
                     <div className="stat-title">Total Products</div>
-                    <div className="stat-value">31K</div>
+                    <div className="stat-value">{data.length}</div>
                 
                 </div>
                 <div className="stat place-items-center">
-                    <div className="stat-title">Total Store Value</div>
-                    <div className="stat-value text-secondary">4,200</div>
+                    <div className="stat-title">Total Quantity</div>
+                    <div className="stat-value">{quantity}</div>
                     
                 </div>
                 <div className="stat place-items-center">
-                    <div className="stat-title">Out of Stock</div>
-                    <div className="stat-value">1,200</div>
+                    <div className="stat-title">Total Store Value</div>
+                    <div className="stat-value">{storeValue}</div>
                    
-                </div>
-                <div className="stat place-items-center">
-                    <div className="stat-title">All Categories</div>
-                    <div className="stat-value">1,200</div>
-
                 </div>
                 </div><br/>
                 <a className="btn btn-ghost text-xl">Inventory Items</a><br/>
@@ -45,35 +63,20 @@ export default function DashboardPage(){
                         </thead>
                         <tbody>
                         {/* row 1 */}
-                        <tr>
-                            <th>1</th>
-                            <td>Cy Ganderton</td>
-                            <td>Quality Control Specialist</td>
-                            <td>10</td>
-                            <td>2</td>
-                            <td>20</td>
-                            <td>Delete</td>
-                        </tr>
-                        {/* row 2 */}
-                        <tr className="hover">
-                            <th>2</th>
-                            <td>Hart Hagerty</td>
-                            <td>Desktop Support Technician</td>
-                            <td>10</td>
-                            <td>2</td>
-                            <td>20</td>
-                            <td>Delete</td>
-                        </tr>
-                        {/* row 3 */}
-                        <tr>
-                            <th>3</th>
-                            <td>Brice Swyre</td>
-                            <td>Tax Accountant</td>
-                            <td>10</td>
-                            <td>2</td>
-                            <td>20</td>
-                            <td>Delete</td>
-                        </tr>
+                        {data && data?.map((value,index)=>(
+                            
+                            <tr>
+                            <th>{index+1}</th>
+                            <td>{value.name}</td>
+                            <td>{value.category}</td>
+                            <td>{value.price}</td>
+                            <td>{value.quantity}</td>
+                            <td>{value.price*value.quantity}</td>
+                            <td className="delete-button" onClick={()=>{deleteProductFromDb(value._id)
+                            window.location.reload();
+                            }}>Delete</td>
+                            </tr>
+                        ))}
                         </tbody>
                     </table>
                     </div>

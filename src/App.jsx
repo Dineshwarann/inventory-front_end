@@ -1,18 +1,18 @@
 import './App.css'
 import {Route,Routes} from "react-router-dom";
-import DashboardPage from './Pages/DashboardPage';
-import Sidebar from './Components/Sidebar';
-import Topbar from './Components/Topbar';
-import Dashboard from './Components/Dashboard';
 import AddProductPage from './Pages/AddProductPage';
-import ChartPage from './Pages/ChartPage';
+import AuthenticationPage from './Pages/AuthenticationPage';
+import BillingPage from './Pages/BillingPage';
+import DashboardPage from './Pages/DashboardPage';
 function App() {
  
 
   return (
    <Routes>
-       <Route exact path='/' element={<DashboardPage/>}/>
-
+       <Route exact path='/' element={<AuthenticationPage/>}/>
+       <Route path='/dashboard' element={<DashboardPage/>}/>
+       <Route path='/addtoproduct' element={<AddProductPage/>}/>
+       <Route path='/billing' element={<BillingPage/>}/>
    </Routes>
   )
 }

@@ -11,3 +11,18 @@
     align-items: flex-start;
     margin-top:10px;
 }
+.authentication-section{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.card-section{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 90px;
+}
+.delete-button{
+    cursor: pointer;
+}

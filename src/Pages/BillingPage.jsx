@@ -1,11 +1,11 @@
 import Dashboard from "../Components/Dashboard";
 
-export default function ChartPage(){
+export default function BillingPage(){
    
     return(
-        <div className="chart-section">
+        <div className="billing-section">
             <Dashboard>
-                Chart
+                Billing
             </Dashboard>
         </div>
     )
