@@ -73,7 +73,9 @@ export default function DashboardPage(){
                             <td>{value.quantity}</td>
                             <td>{value.price*value.quantity}</td>
                             <td className="delete-button capitalize" onClick={()=>{deleteProductFromDb(value._id)
-                            window.location.reload();
+                            setTimeout(()=>{
+                                window.location.reload();
+                            },4000)
                             }}>Delete</td>
                             </tr>
                         ))}

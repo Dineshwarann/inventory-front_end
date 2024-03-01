@@ -95,9 +95,15 @@ export default function AuthenticationPage(){
             <li><a onClick={()=>{
                 setResult("");
                 setAuth("Signin");
+                setEmail("");
+        setPass("");
+        setName("");
                 }}>Signin</a></li>
             <li><a onClick={()=>{
                 setResult("");
+                setEmail("");
+        setPass("");
+        setName("");
                 setAuth("Signup")}} >Signup</a></li>
             </ul></h2>
            {auth==="Signup"?
@@ -133,7 +139,11 @@ export default function AuthenticationPage(){
             <button className="btn" onClick={()=>{
                 setResult("")
                 signin()}}>Signin</button><br/>
-            <button className="btn btn-ghost " onClick={()=>setAuth("Forgot")}>Forgot Password?</button>
+            <button className="btn btn-ghost " onClick={()=>{setAuth("Forgot");
+        setEmail("");
+        setPass("");
+        setName("");
+        }}>Forgot Password?</button>
             {result?<h3 className="ml-12">{result}</h3>:""} 
             </div>:auth==="Forgot"?
             <div className=" text-center">
