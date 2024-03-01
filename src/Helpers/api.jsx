@@ -1,1 +1,1 @@
-export const API="https://inventory-backend-0zau.onrender.com"
+export const API="https://inventory-back-end-yxjl.onrender.com"
