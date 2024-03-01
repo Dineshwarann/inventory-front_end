@@ -7,9 +7,8 @@ export default function AuthenticationPage(){
      
     const {auth,setAuth,email,name,pass,setEmail,setName,setPass,result,setResult}=useContext(AppCtx);
 
-
+    const params=useParams();
     useEffect(()=>{
-          const params=useParams();
           if(params.id){
             setAuth("Reset");
           }
@@ -77,7 +76,6 @@ export default function AuthenticationPage(){
     }
 
     function reset(){
-        const params=useParams();
         const id=params.id;
         const data={
             password:pass
