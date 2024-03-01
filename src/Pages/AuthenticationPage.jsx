@@ -1,11 +1,19 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { AppCtx } from "../Context/AppContext"
 import { forgotUser, resetPassword, signinUser, signupUser } from "../Helpers/helper";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function AuthenticationPage(){
      
     const {auth,setAuth,email,name,pass,setEmail,setName,setPass,result,setResult}=useContext(AppCtx);
+
+
+    useEffect(()=>{
+          const params=useParams();
+          if(params.id){
+            setAuth("Reset");
+          }
+    },[])
 
 
     const navigate=useNavigate();
@@ -69,10 +77,12 @@ export default function AuthenticationPage(){
     }
 
     function reset(){
+        const params=useParams();
+        const id=params.id;
         const data={
             password:pass
         }
-        resetPassword(data).then((result)=>{
+        resetPassword(id,data).then((result)=>{
             if(result.message==="Password Reset Successfull"){
                 setResult(result.message);
             }else{

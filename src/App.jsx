@@ -13,6 +13,7 @@ function App() {
        <Route path='/dashboard' element={<DashboardPage/>}/>
        <Route path='/addtoproduct' element={<AddProductPage/>}/>
        <Route path='/billing' element={<BillingPage/>}/>
+       <Route path='/reset/:id' element={<AuthenticationPage/>}/>
    </Routes>
   )
 }
