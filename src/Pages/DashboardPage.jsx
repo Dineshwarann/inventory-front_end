@@ -10,7 +10,7 @@ export default function DashboardPage(){
         return accumulator+=value.quantity;
     },0)
     const storeValue=data.reduce((accumulator,value,index,array)=>{
-        return accumulator+=value.price;
+        return accumulator+=(value.price*value.quantity);
     },0)
     function deleteProductFromDb(id){
         const data={
@@ -27,30 +27,30 @@ export default function DashboardPage(){
     return(
         <div className="dashboard-page">
             <Dashboard>
-            <a className="btn btn-ghost text-xl">Inventory Stats</a><br/>
-                <div className="stats shadow">
+            <a className="btn btn-ghost text-xl font-bold mt-4 mb-2">Inventory Stats</a><br/>
+                <div className="stats shadow skeleton bg-primary">
                 <div className="stat place-items-center">
-                    <div className="stat-title">Total Products</div>
+                    <div className="stat-title font-bold">Total Products</div>
                     <div className="stat-value">{data.length}</div>
                 
                 </div>
                 <div className="stat place-items-center">
-                    <div className="stat-title">Total Quantity</div>
+                    <div className="stat-title font-bold">Total Quantity</div>
                     <div className="stat-value">{quantity}</div>
                     
                 </div>
                 <div className="stat place-items-center">
-                    <div className="stat-title">Total Store Value</div>
+                    <div className="stat-title font-bold">Total Store Value</div>
                     <div className="stat-value">{storeValue}</div>
                    
                 </div>
                 </div><br/>
-                <a className="btn btn-ghost text-xl">Inventory Items</a><br/>
+                <a className="btn btn-ghost text-xl font-bold mt-4 mb-2">Inventory Items</a><br/>
 
-                <div className="overflow-x-auto">
-                    <table className="table">
+                <div className="overflow-x-auto font-bold">
+                    <table className="table ">
                         {/* head */}
-                        <thead>
+                        <thead className="text-xl">
                         <tr>
                             <th></th>
                             <th>Name</th>
@@ -61,18 +61,18 @@ export default function DashboardPage(){
                             <th>Action</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody className="text-lg">
                         {/* row 1 */}
                         {data && data?.map((value,index)=>(
                             
-                            <tr>
+                            <tr key={index}>
                             <th>{index+1}</th>
-                            <td>{value.name}</td>
-                            <td>{value.category}</td>
-                            <td>{value.price}</td>
+                            <td className="uppercase">{value.name}</td>
+                            <td className="capitalize">{value.category}</td>
+                            <td>{value.price}Rs/-</td>
                             <td>{value.quantity}</td>
                             <td>{value.price*value.quantity}</td>
-                            <td className="delete-button" onClick={()=>{deleteProductFromDb(value._id)
+                            <td className="delete-button capitalize" onClick={()=>{deleteProductFromDb(value._id)
                             window.location.reload();
                             }}>Delete</td>
                             </tr>

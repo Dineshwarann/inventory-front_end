@@ -1,22 +1,16 @@
-import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
 
 export default function Dashboard({children}){
     return(
-        <div class="text-center">
-        <div class="row">
-          <div class="col">
+        <div className="text-center">
+        <div className="row">
+          <div className="col">
              <Topbar/>
           </div>
         </div>
-        <div class="row">
-          <div class="col-2">
-           <Sidebar/>
-          </div>
-          <div class="col-10">
+          <div className="col main-section" >
             {children}
           </div>
-        </div>
         </div>
     )
 }

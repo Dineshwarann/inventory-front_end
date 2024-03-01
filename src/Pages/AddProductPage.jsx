@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Dashboard from "../Components/Dashboard";
 import { AppCtx } from "../Context/AppContext";
 import { addProduct } from "../Helpers/helper";
@@ -29,16 +29,22 @@ export default function AddProductPage(){
         console.log(error)});
     }
     
+    useEffect(()=>{
+      setResult("");
+      setProductName("");
+      setProductPrice("");
+      setProductQuantity("")  
+    },[])
     return(
         <div className="addProductPage-section">
            <Dashboard>
             <div className="addtoproduct-formsection">
-           <input value={productName} onChange={(event)=>setProductName(event.target.value)} type="text" placeholder="Product Name" className="input input-bordered w-full max-w-xs" /><br/>
+           <input value={productName} onChange={(event)=>setProductName(event.target.value)} type="text" placeholder="Product Name" className="input input-bordered w-full max-w-xs mt-28" /><br/>
            <input value={productCategory} onChange={(event)=>setProductCategory(event.target.value)} type="text" placeholder="Product Category" className="input input-bordered w-full max-w-xs" /><br/>
            <input value={productPrice} onChange={(event)=>setProductPrice(event.target.value)} type="number" placeholder="Product Price" className="input input-bordered w-full max-w-xs" /><br/>
            <input value={productQuantity} onChange={(event)=>setProductQuantity(event.target.value)} type="number" placeholder="Product Quantity" className="input input-bordered w-full max-w-xs" /><br/>
-           <button className="btn btn-neutral" onClick={()=>addProductToDb()}>Add Product</button>
-           {result?<h3 className="ml-12">{result}</h3>:""} 
+           <button className="btn skeleton mb-2 bg-primary" onClick={()=>addProductToDb()}>Add Product</button>
+           {result?<h3>{result}</h3>:""} 
            </div>
            </Dashboard>
         </div>

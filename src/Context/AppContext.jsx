@@ -15,6 +15,11 @@ export default function AppContext({children}){
     const [productPrice,setProductPrice]=useState("");
     const [productQuantity,setProductQuantity]=useState("");
     const [userName,setUsername]=useState("");
+   const [billUserName,setBillUserName]=useState("");
+   const [billEmail,setBillEmail]=useState("");
+   const [billValue,setBillValue]=useState("");
+   const [globalData,setGlobalData]=useState([]);
+
 
     useEffect(()=>{
          getProduct(data).then((result)=>{
@@ -31,7 +36,8 @@ export default function AppContext({children}){
        
         <AppCtx.Provider value={
             {   
-                auth,setAuth,email,name,pass,setEmail,setName,setPass,result,setResult,data,setData,productName,productCategory,productPrice,productQuantity,setProductName,setProductCategory,setProductPrice,setProductQuantity,userName,setUsername
+                auth,setAuth,email,name,pass,setEmail,setName,setPass,result,setResult,data,setData,productName,productCategory,productPrice,productQuantity,setProductName,setProductCategory,setProductPrice,setProductQuantity,userName,setUsername,billUserName,billEmail,setBillUserName,setBillEmail,billValue,setBillValue,
+                globalData,setGlobalData
             }}>{children}</AppCtx.Provider>
     )
 }
